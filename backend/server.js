@@ -7,8 +7,27 @@ dotenv.config();
 
 const app = express();
 
-// Middleware - Allow all origins for now
-app.use(cors());
+// CORS Configuration - Update with your Vercel frontend URL after deployment
+const allowedOrigins = [
+  'http://localhost:3001',
+  'http://localhost:3000',
+  process.env.FRONTEND_URL || 'https://your-frontend-name.vercel.app'
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    // Allow requests with no origin (mobile apps, curl, etc.)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true
+}));
+
 app.use(express.json());
 
 // Connect to database
@@ -32,9 +51,17 @@ app.use('/api/dashboard', require('./routes/dashboard'));
 const PORT = process.env.PORT || 5000;
 
 // Only start server if not in serverless environment
-if (process.env.VERCEL !== '1') {
+if (process.env.VERCEL !== '1' && require.main === module) {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
+  }).on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(`Port ${PORT} is already in use. Please close other applications or change PORT in .env`);
+      process.exit(1);
+    } else {
+      console.error('Server error:', err);
+      process.exit(1);
+    }
   });
 }
 
