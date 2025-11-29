@@ -33,6 +33,9 @@ app.use(express.json());
 // Connect to database
 connectDB();
 
+// Favicon handler - prevent 404
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+
 // Root endpoint
 app.get('/', (req, res) => {
   res.json({ message: 'Employee Leave Management API', status: 'Running' });
