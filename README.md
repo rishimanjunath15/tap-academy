@@ -6,6 +6,11 @@ A full-stack MERN (MongoDB, Express.js, React, Node.js) application for managing
 ![Node](https://img.shields.io/badge/node-%3E%3D14.0.0-brightgreen.svg)
 ![React](https://img.shields.io/badge/react-18.2.0-blue.svg)
 
+## 🌐 Live Demo
+
+- **Frontend:** [https://tap-academy-frontend.vercel.app](https://tap-academy-frontend.vercel.app)
+- **Backend API:** [https://tap-academy-dun.vercel.app](https://tap-academy-dun.vercel.app)
+
 ## ✨ Features
 
 ### Employee Features
@@ -34,13 +39,17 @@ A full-stack MERN (MongoDB, Express.js, React, Node.js) application for managing
 **Backend:**
 - Node.js
 - Express.js 4.18.2
-- MongoDB with Mongoose
+- MongoDB Atlas (Cloud Database)
 - JWT Authentication
 - bcryptjs for Password Hashing
 
+**Deployment:**
+- Vercel (Frontend & Backend)
+- MongoDB Atlas (Database)
+
 ## 📋 Prerequisites
 
-Before running this application, make sure you have:
+Before running this application locally, make sure you have:
 
 - **Node.js** (v14.0.0 or higher) - [Download](https://nodejs.org/)
 - **MongoDB Atlas Account** (free tier) - [Sign up](https://www.mongodb.com/cloud/atlas)
@@ -166,9 +175,9 @@ The application will open at http://localhost:3000
 ## Default Leave Balance
 
 Each new employee gets:
-- Sick Leave: 10 days
-- Casual Leave: 5 days
-- Vacation: 5 days
+- 📅 **Annual Leave:** 20 days
+- 🤒 **Sick Leave:** 12 days
+- 🎉 **Casual Leave:** 10 days
 
 ## User Roles
 
@@ -179,47 +188,87 @@ Each new employee gets:
 
 The application uses JWT (JSON Web Tokens) for authentication. Tokens are stored in localStorage and sent with each API request via the Authorization header.
 
-## Environment Variables
+## 🔐 Environment Variables
 
 ### Backend (.env)
-```
+```env
 PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
-NODE_ENV=development
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/leave_management
+JWT_SECRET=your_super_secret_jwt_key
+NODE_ENV=production
 ```
+
+### Frontend (.env)
+```env
+PORT=3001
+REACT_APP_API_URL=https://tap-academy-dun.vercel.app/api
+```
+
+## 🚀 Deployment
+
+This application is deployed on **Vercel**:
+
+### Deploy Your Own
+
+1. Fork this repository
+2. Import to Vercel
+3. Set environment variables
+4. Deploy!
+
+See [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md) for detailed instructions.
 
 ## Development
 
 ### Running Backend in Development Mode
 ```bash
 cd backend
-npm run dev
+npm install
+npm start
 ```
 
 ### Running Frontend in Development Mode
 ```bash
 cd frontend
+npm install
 npm start
 ```
 
+## 📸 Screenshots
+
+### Login Page
+- Beautiful role-based login (Employee/Manager)
+- Animated gradients and modern UI
+
+### Employee Dashboard
+- Leave balance cards with animations
+- Apply for leave form
+- Leave history with status badges
+
+### Manager Dashboard
+- Pending requests in card view
+- Approve/Reject with comments
+- Complete leave history table
+
 ## Future Enhancements
 
-- Email notifications for leave approvals/rejections
-- Calendar view for leave schedules
-- Leave history reports
-- Multiple manager approval workflow
-- Holiday calendar integration
-- Export leave reports to PDF/Excel
+- 📧 Email notifications for leave approvals/rejections
+- 📅 Calendar view for leave schedules
+- 📊 Leave history reports
+- 👥 Multiple manager approval workflow
+- 🗓️ Holiday calendar integration
+- 📄 Export leave reports to PDF/Excel
 
-## License
+## 📄 License
 
-ISC
+MIT License - see [LICENSE](LICENSE) file for details.
 
-## Author
+## 👨‍💻 Author
 
-Your Name
+**Rishi Manjunath**
+- GitHub: [@rishimanjunath15](https://github.com/rishimanjunath15)
 
 ---
 
-**Note**: Remember to change the JWT_SECRET in production and use environment-specific configuration.
+⭐ **Star this repository if you find it helpful!**
+
+**Made with ❤️ using MERN Stack**
