@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-// Use environment variable for API URL, fallback to localhost for development
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+// Production API URL - Update this with your Vercel backend URL
+const API_URL = process.env.REACT_APP_API_URL || 'https://tap-academy-dun.vercel.app/api';
+
+console.log('API URL:', API_URL); // Debug log
 
 const API = axios.create({
   baseURL: API_URL
