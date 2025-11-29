@@ -7,26 +7,8 @@ dotenv.config();
 
 const app = express();
 
-// CORS Configuration - Update with your Vercel frontend URL after deployment
-const allowedOrigins = [
-  'http://localhost:3001',
-  'http://localhost:3000',
-  process.env.FRONTEND_URL || 'https://your-frontend-name.vercel.app'
-];
-
-app.use(cors({
-  origin: function(origin, callback) {
-    // Allow requests with no origin (mobile apps, curl, etc.)
-    if (!origin) return callback(null, true);
-    
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
-  credentials: true
-}));
+// CORS Configuration - Allow all origins for Vercel deployment
+app.use(cors());
 
 app.use(express.json());
 
